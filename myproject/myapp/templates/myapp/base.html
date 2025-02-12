@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Moja Restauracja{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Moja Restauracja</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'welcome' %}">Strona Główna</a></li>
+                <li><a href="{% url 'guest-list' %}">Lista Gości</a></li>
+                <li><a href="{% url 'reservation-list' %}">Rezerwacje</a></li>
+                <a href="{% url 'monthly-reservations-summary' 2025 2 %}">Podsumowanie rezerwacji – Luty 2025</a>
+                <li><a href="{% url 'search-guest-reservations' %}">Wyszukaj Rezerwacje Gościa</a></li>
+                <li><a href="{% url 'table-list' %}">Lista Stolików</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Moja Restauracja</p>
+    </footer>
+</body>
+</html>

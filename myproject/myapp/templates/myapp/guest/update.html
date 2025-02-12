@@ -1,0 +1,22 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}Edytuj Gościa{% endblock %}
+
+{% block content %}
+<h2>Edytuj Dane Gościa</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Zapisz zmiany</button>
+</form>
+
+<!-- Sprawdzenie, czy obiekt guest ma przypisane ID -->
+{% if guest and guest.id %}
+    <a href="{% url 'guest-detail' guest.id %}">Powrót do szczegółów</a> |
+{% else %}
+    <p><em>Nie można wyświetlić szczegółów - brak ID gościa.</em></p>
+{% endif %}
+
+<a href="{% url 'guest-list' %}">Powrót do listy gości</a>
+{% endblock %}

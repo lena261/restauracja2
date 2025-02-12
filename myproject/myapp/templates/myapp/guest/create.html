@@ -1,0 +1,15 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}Dodaj Nowego Gościa{% endblock %}
+
+{% block content %}
+<h2>Dodaj Nowego Gościa</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Dodaj</button>
+</form>
+
+<a href="{% url 'guest-list' %}">Powrót do listy gości</a>
+{% endblock %}

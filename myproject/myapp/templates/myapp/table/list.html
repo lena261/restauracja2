@@ -1,0 +1,22 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}Lista Stolików{% endblock %}
+
+{% block content %}
+<h2>Lista Stolików</h2>
+
+{% if tables %}
+    <ul>
+        {% for table in tables %}
+            <li>
+                Stolik nr {{ table.TableNumber }} 
+                ({{ table.place }} - {{ table.quantity }} miejsc)
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Brak stolików w bazie danych.</p>
+{% endif %}
+
+<a href="{% url 'welcome' %}">Powrót do strony głównej</a>
+{% endblock %}

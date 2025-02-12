@@ -1,0 +1,25 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}Podsumowanie rezerwacji – {{ month }}/{{ year }}{% endblock %}
+
+{% block content %}
+<h2>Podsumowanie rezerwacji za {{ month }}/{{ year }}</h2>
+
+<p>Łączna liczba rezerwacji: <strong>{{ total_reservations }}</strong></p>
+
+<h3>Rezerwacje według klientów:</h3>
+<ul>
+    {% for guest in reservations_by_guest %}
+        <li>{{ guest.lastname__firstname }} {{ guest.lastname__lastname }} – {{ guest.total }} rezerwacji</li>
+    {% endfor %}
+</ul>
+
+<h3>Wszystkie rezerwacje:</h3>
+<ul>
+    {% for reservation in reservations %}
+        <li>{{ reservation.lastname }} – Stolik nr {{ reservation.tableNumber.tableNumber }} – {{ reservation.dateTime }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'reservation-list' %}">Powrót do listy rezerwacji</a>
+{% endblock %}

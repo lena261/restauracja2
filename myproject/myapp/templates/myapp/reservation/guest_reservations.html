@@ -1,0 +1,22 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}Rezerwacje dla {{ guest.name }}{% endblock %}
+
+{% block content %}
+<h2>Rezerwacje dla {{ guest.name }}</h2>
+
+{% if reservations %}
+    <ul>
+    {% for reservation in reservations %}
+        <li>
+            Stolik nr {{ reservation.tableNumber.tableNumber }} – {{ reservation.dateTime }} ({{ reservation.guestNumber }} osób)
+            <a href="{% url 'reservation-detail' reservation.id %}">Szczegóły</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Brak rezerwacji dla tego klienta.</p>
+{% endif %}
+
+<a href="{% url 'reservation-list' %}">Powrót do listy rezerwacji</a>
+{% endblock %}

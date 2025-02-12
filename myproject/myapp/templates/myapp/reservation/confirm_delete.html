@@ -1,0 +1,17 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}Usuń Rezerwację{% endblock %}
+
+{% block content %}
+<h2>Czy na pewno chcesz usunąć tę rezerwację?</h2>
+
+<p>Nazwisko: {{ reservation.lastname }}</p>
+<p>Stolik nr: {{ reservation.TableNumber }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Tak, usuń</button>
+</form>
+
+<a href="{% url 'reservation-list' %}">Anuluj</a>
+{% endblock %}

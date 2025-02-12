@@ -1,0 +1,14 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}Szczegóły Gościa{% endblock %}
+
+{% block content %}
+<h2>Szczegóły Gościa</h2>
+<p><strong>Imię:</strong> {{ guest.firstname }}</p>
+<p><strong>Nazwisko:</strong> {{ guest.lastname }}</p>
+<p><strong>Email:</strong> {{ guest.email }}</p>
+
+<a href="{% url 'guest-update' guest.id %}">Edytuj</a> |
+<a href="{% url 'guest-delete' guest.id %}">Usuń</a> |
+<a href="{% url 'guest-list' %}">Powrót do listy</a>
+{% endblock %}

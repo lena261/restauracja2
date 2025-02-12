@@ -1,0 +1,53 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}Lista Gości{% endblock %}
+
+{% block content %}
+<h2>Lista Gości</h2>
+
+<!-- Link do dodawania nowego gościa -->
+<h3><a href="{% url 'guest-create' %}">Dodaj nowego gościa</a></h3>
+
+<!-- Formularz wyszukiwania gości po nazwisku -->
+<h3>Wyszukaj gościa po nazwisku</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Szukana fraza: <input type="text" name="phrase" placeholder="Wpisz nazwisko"></p>
+    <p><input type="submit" value="Szukaj"></p>
+</form>
+
+<br>
+
+<!-- Wyświetlenie listy gości -->
+{% if guests %}
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Email</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guest in guests %}
+            <tr>
+                <td>{{ guest.id }}</td>
+                <td>{{ guest.firstname }}</td>
+                <td>{{ guest.lastname }}</td>
+                <td>{{ guest.email }}</td>
+                <td>
+                    <a href="{% url 'guest-detail' guest.id %}">Szczegóły</a> |
+                    <a href="{% url 'guest-update' guest.id %}">Edytuj</a> |
+                    <a href="{% url 'guest-delete' guest.id %}">Usuń</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Brak gości w bazie.</p>
+{% endif %}
+
+{% endblock %}
